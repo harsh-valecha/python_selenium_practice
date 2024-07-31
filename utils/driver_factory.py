@@ -4,10 +4,14 @@ from utils.config import Config
 
 def get_driver():
     if Config.BROWSER == "chrome":
-        return webdriver.Chrome(options=ChromeOptions())
+        options = webdriver.ChromeOptions()
+        options.add_argument('--log-level=1')
+        return webdriver.Chrome(options=options)
     
     elif Config.BROWSER == "firefox":
-        return webdriver.Firefox(options=FirefoxOptions())
+        options = webdriver.FirefoxOptions()
+        options.add_argument('--log-level=1')
+        return webdriver.Firefox(options=options)
     
     else:
         raise Exception(f"Browser {Config.BROWSER} is not supported.")
